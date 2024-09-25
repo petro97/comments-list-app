@@ -20,7 +20,7 @@ interface Comment {
   user: User
 }
 
-interface CommentsState {
+export interface CommentsState {
   comments: Comment[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null
