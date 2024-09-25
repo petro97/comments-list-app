@@ -33,6 +33,8 @@ jobs:
           git config --global user.name "petro97"
 
       - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run deploy
 
       - name: Clean up
