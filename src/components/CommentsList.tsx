@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { AppDispatch, RootState } from '../features/comments/store.ts'
+import { AppDispatch, RootState } from '../features/comments/store'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addComment,
   deleteComment,
   fetchComments
-} from '../features/comments/commentsSlice.ts'
+} from '../features/comments/commentsSlice'
 
 const CommentsList = () => {
   const dispatch: AppDispatch = useDispatch()
