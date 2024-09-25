@@ -34,7 +34,7 @@ const CommentsList = () => {
   }
   return (
     <div>
-      <h1>Comments</h1>
+      <h1>Comments2</h1>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Error: {error}</div>}
       <ul>
