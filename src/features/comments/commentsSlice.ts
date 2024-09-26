@@ -1,9 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  PayloadAction,
-  SerializedError
-} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 interface User {
@@ -12,7 +7,7 @@ interface User {
   fullName: string
 }
 
-interface Comment {
+export interface Comment {
   id: number
   body: string
   postId: number
@@ -32,12 +27,11 @@ const initialState: CommentsState = {
   error: null
 }
 
-// Create an async thunk to fetch comments
 export const fetchComments = createAsyncThunk<Comment[]>(
   'comments/fetchComments',
   async () => {
+    //@ts-ignore
     const apiUrl = import.meta.env.VITE_API_URL
-
     const response = await axios.get<{ comments: Comment[] }>(
       `${apiUrl}/comments`
     )
@@ -45,7 +39,6 @@ export const fetchComments = createAsyncThunk<Comment[]>(
   }
 )
 
-// Create a slice for comments
 const commentsSlice = createSlice({
   name: 'comments',
   initialState,
@@ -71,17 +64,15 @@ const commentsSlice = createSlice({
           state.comments = action.payload
         }
       )
-      .addCase(
-        fetchComments.rejected,
-        (state: CommentsState, action: { error: SerializedError }) => {
-          state.status = 'failed'
-          state.error = action.error.message || 'Failed to fetch comments'
-        }
-      )
+      .addCase(fetchComments.rejected, (state, action) => {
+        //@ts-ignore
+        state.status = 'failed'
+        //@ts-ignore
+        state.error = action.error.message || 'Failed to fetch comments'
+      })
   }
 })
 
-// Export the actions and the reducer
 export const { addComment, deleteComment } = commentsSlice.actions
 
 export default commentsSlice.reducer
