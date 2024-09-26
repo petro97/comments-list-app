@@ -3,37 +3,37 @@
 @tailwind utilities;
 
 @layer base {
-    #root {
-        height: 100%;
-    }
+  #root {
+    height: 100%;
+  }
 
-    h1 {
-        @apply text-[1.75rem];
-        @apply font-semibold;
-    }
+  h1 {
+    @apply text-[1.75rem];
+    @apply font-semibold;
+  }
 
-    h2 {
-        @apply text-[1.313rem];
-        @apply font-semibold;
-    }
+  h2 {
+    @apply text-[1.313rem];
+    @apply font-semibold;
+  }
 
-    h3 {
-        @apply text-xl;
-        @apply font-normal;
-    }
+  h3 {
+    @apply text-xl;
+    @apply font-normal;
+  }
 
-    h4 {
-        @apply text-lg;
-        @apply font-semibold;
-    }
+  h4 {
+    @apply text-lg;
+    @apply font-semibold;
+  }
 
-    h5 {
-        @apply text-base;
-        @apply font-semibold;
-    }
+  h5 {
+    @apply text-base;
+    @apply font-semibold;
+  }
 
-    h6 {
-        @apply text-sm;
-        @apply font-semibold;
-    }
+  h6 {
+    @apply text-sm;
+    @apply font-semibold;
+  }
 }

@@ -1,50 +1,119 @@
-# React + TypeScript + Vite
+# Comment Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a simple web application for creating and deleting comments, built with **React**, **Vite**, and \*
+\*TypeScript\*\*. It showcases best practices in code organization, performance optimization, and user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Create Comments**: Users can add comments to a designated area.
+- **Delete Comments**: Users can remove comments they no longer wish to display.
+- **Responsive Design**: The app works seamlessly across various devices and screen sizes.
+- **Real-time Updates**: Comments are displayed immediately without needing to refresh the page.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend**: React, Vite, TypeScript
+- **Styling**: Tailwind CSS (or any other styling framework you are using)
+- **Linting and Formatting**: ESLint, Prettier
+- **Deployment**: GitHub Pages
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname
-    }
-  }
-})
-```
+## Installation
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Clone the repository:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+   ```bash
+   git clone <repository-link>
+   cd <repository-folder>
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules
-  }
-})
-```
+   ```
+
+2. Install dependencies:
+
+   ```
+   yarn install
+   ```
+
+3. Set up your environment variables by creating a .env file in the root directory and adding the following line:
+
+   ```
+   VITE_API_URL=<your_api_url>
+   ```
+
+## Scripts
+
+The following scripts are available in `package.json`:
+
+- **Development**: Start the development server.
+
+  ```bash
+  yarn dev
+  ```
+
+- **Build**: Compile TypeScript and build the project for production.
+
+  ```bash
+  yarn build
+  ```
+
+- **Preview**: Preview the built project locally.
+
+  ```bash
+  yarn preview
+  ```
+
+- **Deploy**: Build the project and deploy to GitHub Pages.
+
+  ```bash
+  yarn deploy
+  ```
+
+- **Lint**: Run ESLint to check for code quality issues.
+
+  ```bash
+  yarn lint
+  ```
+
+- **Fix Linting Issues**: Automatically fix linting issues.
+
+  ```bash
+  yarn lint:fix
+  ```
+
+- **Format Code**: Format the codebase using Prettier.
+
+  ```bash
+  yarn format
+  ```
+
+## CI/CD
+
+This project includes CI scripts for automated build and deployment processes. You can set up GitHub Actions to run
+tests and deploy the app on each push to the main branch. Below is a basic structure of how to set up your GitHub
+This configuration checks out your code, sets up Node.js, installs dependencies, builds the project, and deploys it to
+GitHub Pages.
+
+## Codebase Organization
+
+The codebase is structured for maintainability and readability. Key files and directories include:
+
+- **src/**: Contains the main application code.
+- **tests/**: Contains unit tests for various components.
+- **public/**: Contains static assets.
+
+## Testing
+
+Unit tests are included to ensure the functionality of the application. Components are covered by unit tests to verify
+that they work correctly and handle expected inputs and outputs. Tests can be created using **Vitest**. To run the
+tests, you can use one of the following commands:
+
+    yarn test
+
+or
+
+    npx vitest run
+
+## Live Demo
+
+You can view the live application [here](https://petro97.github.io/comments-list-app/).
