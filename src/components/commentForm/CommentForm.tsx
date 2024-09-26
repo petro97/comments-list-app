@@ -45,42 +45,46 @@ const CommentForm = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Validation logic
-    const newErrors: FormErrors = {}
+    try {
+      // Validation logic
+      const newErrors: FormErrors = {}
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full Name is required'
-    }
-    if (!formData.username.trim()) {
-      newErrors.username = 'Username is required'
-    }
-    if (!formData.body.trim()) {
-      newErrors.body = 'Comment body is required'
-    }
-
-    // If there are errors, set them in state and don't proceed with form submission
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
-    }
-
-    // Form submission logic
-    const newComment = {
-      id: new Date().getTime(),
-      body: formData.body,
-      postId: comments.length + 1,
-      likes: 0,
-      user: {
-        id: 1,
-        username: formData.username,
-        fullName: formData.fullName
+      if (!formData.fullName.trim()) {
+        newErrors.fullName = 'Full Name is required'
       }
-    }
-    // Add the comment to state
-    dispatch(addComment(newComment))
+      if (!formData.username.trim()) {
+        newErrors.username = 'Username is required'
+      }
+      if (!formData.body.trim()) {
+        newErrors.body = 'Comment body is required'
+      }
 
-    // Reset the form after submission
-    setFormData(defaultFormData)
+      // If there are errors, set them in state and don't proceed with form submission
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors)
+        return
+      }
+
+      // Form submission logic
+      const newComment = {
+        id: new Date().getTime(),
+        body: formData.body,
+        postId: comments.length + 1,
+        likes: 0,
+        user: {
+          id: 1,
+          username: formData.username,
+          fullName: formData.fullName
+        }
+      }
+      // Add the comment to state
+      dispatch(addComment(newComment))
+
+      // Reset the form after submission
+      setFormData(defaultFormData)
+    } catch (error) {
+      console.error('Error during form submission:', error)
+    }
   }
 
   return (
@@ -93,6 +97,7 @@ const CommentForm = () => {
           Full Name
         </label>
         <input
+          id="fullName"
           name="fullName"
           value={formData.fullName}
           onChange={handleInputChange}
@@ -109,6 +114,7 @@ const CommentForm = () => {
           Username
         </label>
         <input
+          id="username"
           name="username"
           value={formData.username}
           onChange={handleInputChange}
@@ -125,6 +131,7 @@ const CommentForm = () => {
           Comment
         </label>
         <textarea
+          id="body"
           name="body"
           value={formData.body}
           onChange={handleInputChange}
