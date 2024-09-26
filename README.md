@@ -2,8 +2,8 @@
 
 ## Overview
 
-This project is a simple web application for creating and deleting comments, built with **React**, **Vite**, and \*
-\*TypeScript\*\*. It showcases best practices in code organization, performance optimization, and user experience.
+This project is a simple web application for creating and deleting comments, built with **React**, **Vite**, and *
+*TypeScript**. It showcases best practices in code organization, performance optimization, and user experience.
 
 ## Features
 
@@ -15,7 +15,7 @@ This project is a simple web application for creating and deleting comments, bui
 ## Technology Stack
 
 - **Frontend**: React, Vite, TypeScript
-- **Styling**: Tailwind CSS (or any other styling framework you are using)
+- **Styling**: Tailwind CSS
 - **Linting and Formatting**: ESLint, Prettier
 - **Deployment**: GitHub Pages
 
@@ -87,6 +87,12 @@ The following scripts are available in `package.json`:
   yarn format
   ```
 
+- **Run Unit tests**: Run unit tests.
+
+  ```bash
+  yarn test
+  ```
+
 ## CI/CD
 
 This project includes CI scripts for automated build and deployment processes. You can set up GitHub Actions to run
@@ -105,8 +111,8 @@ The codebase is structured for maintainability and readability. Key files and di
 ## Testing
 
 Unit tests are included to ensure the functionality of the application. Components are covered by unit tests to verify
-that they work correctly and handle expected inputs and outputs. Tests can be created using **Vitest**. To run the
-tests, you can use one of the following commands:
+that they work correctly and handle expected inputs and outputs. Tests is created by using **Vitest**. To run the tests,
+you can use one of the following commands:
 
     yarn test
 
