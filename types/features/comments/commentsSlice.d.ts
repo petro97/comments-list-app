@@ -3,7 +3,7 @@ interface User {
     username: string;
     fullName: string;
 }
-interface Comment {
+export interface Comment {
     id: number;
     body: string;
     postId: number;
