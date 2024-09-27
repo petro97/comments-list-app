@@ -4,6 +4,11 @@
 
 This project is a simple web application for creating and deleting comments, built with **React**, **Vite**, and *
 *TypeScript**. It showcases best practices in code organization, performance optimization, and user experience.
+The application ensures that all comments added by users are stored in the Redux state. This state is persisted using
+redux-persist, meaning that even if the user reloads the page, all previously added comments will remain visible. The
+form input values (Full Name, Username, and Comment Body) are saved in the Redux store. If the user is in the middle of
+filling out the form and the page is accidentally reloaded or navigated away from, their progress will be retained, and
+the form will reload with the values they had previously entered.
 
 ## Features
 
@@ -11,6 +16,8 @@ This project is a simple web application for creating and deleting comments, bui
 - **Delete Comments**: Users can remove comments they no longer wish to display.
 - **Responsive Design**: The app works seamlessly across various devices and screen sizes.
 - **Real-time Updates**: Comments are displayed immediately without needing to refresh the page.
+- **Persistent Data**: Both comments and form state are saved in the Redux store and persist even after a page reload.
+  This ensures users don't lose their data and can continue where they left off.
 
 ## Technology Stack
 

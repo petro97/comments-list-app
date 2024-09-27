@@ -2,20 +2,9 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../features/comments/store'
 import { addComment } from '../../features/comments/commentsSlice'
+import { resetForm, updateForm } from '../../features/comments/formSlice'
 
-interface CommentFormData {
-  fullName: string
-  username: string
-  body: string
-}
-
-interface FormErrors {
-  fullName?: string
-  username?: string
-  body?: string
-}
-
-const defaultFormData = {
+const defaultFormErrors = {
   body: '',
   username: '',
   fullName: ''
@@ -24,17 +13,21 @@ const defaultFormData = {
 const CommentForm = () => {
   const dispatch = useDispatch()
   const { comments } = useSelector((state: RootState) => state.comments)
-  const [formData, setFormData] = useState<CommentFormData>(defaultFormData)
-  const [errors, setErrors] = useState<FormErrors>(defaultFormData)
+  const [errors, setErrors] = useState(defaultFormErrors)
 
+  const form: any = useSelector(
+    (state: RootState) =>
+      state.form || {
+        fullName: '',
+        username: '',
+        body: ''
+      }
+  )
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-
+    //@ts-ignore
+    dispatch(updateForm({ [e.target.name]: e.target.value }))
     // Clear error message when user types
     setErrors({
       ...errors,
@@ -47,15 +40,15 @@ const CommentForm = () => {
 
     try {
       // Validation logic
-      const newErrors: FormErrors = {}
+      const newErrors: any = {}
 
-      if (!formData.fullName.trim()) {
+      if (!form.fullName.trim()) {
         newErrors.fullName = 'Full Name is required'
       }
-      if (!formData.username.trim()) {
+      if (!form.username.trim()) {
         newErrors.username = 'Username is required'
       }
-      if (!formData.body.trim()) {
+      if (!form.body.trim()) {
         newErrors.body = 'Comment body is required'
       }
 
@@ -65,25 +58,25 @@ const CommentForm = () => {
         return
       }
 
-      // Form submission logic
+      // Validation and submission logic
       const newComment = {
         id: new Date().getTime(),
-        body: formData.body,
+        body: form.body,
         postId: comments.length + 1,
         likes: 0,
         user: {
           id: 1,
-          username: formData.username,
-          fullName: formData.fullName
+          username: form.username,
+          fullName: form.fullName
         }
       }
-      // Add the comment to state
+
       dispatch(addComment(newComment))
 
-      // Reset the form after submission
-      setFormData(defaultFormData)
-    } catch (error) {
-      console.error('Error during form submission:', error)
+      // Clear form data after submission
+      dispatch(resetForm())
+    } catch (e) {
+      console.error(e)
     }
   }
 
@@ -99,9 +92,9 @@ const CommentForm = () => {
         <input
           id="fullName"
           name="fullName"
-          value={formData.fullName}
+          value={form.fullName}
           onChange={handleInputChange}
-          className={`w-full px-3 py-2 border ${errors.fullName ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="Full Name"
         />
         {errors.fullName && (
@@ -116,9 +109,9 @@ const CommentForm = () => {
         <input
           id="username"
           name="username"
-          value={formData.username}
+          value={form.username}
           onChange={handleInputChange}
-          className={`w-full px-3 py-2 border ${errors.username ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="Username"
         />
         {errors.username && (
@@ -133,9 +126,9 @@ const CommentForm = () => {
         <textarea
           id="body"
           name="body"
-          value={formData.body}
+          value={form.body}
           onChange={handleInputChange}
-          className={`w-full px-3 py-2 border ${errors.body ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="Write your comment"
         />
         {errors.body && (
